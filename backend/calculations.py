@@ -1,23 +1,35 @@
-
 import math
 
-def cutting_speed(diameter, rpm):
+def cnc_calculations(diameter, rpm, feed, length, doc, nose_radius):
 
-    speed = (math.pi * diameter * rpm) / 1000
+    if rpm <= 0 or feed <= 0 or diameter <= 0:
+        return {"error": "Invalid machining parameters"}
 
-    return round(speed, 3)
+    feed_rate = feed * rpm
 
-def machining_time(speed, feed, length):
+    if feed_rate == 0:
+        return {"error": "Feed rate cannot be zero"}
 
-    if speed <= 0:
-        return {"error": "Speed must be greater than 0"}
+    cutting_speed = (math.pi * diameter * rpm) / 1000
 
-    if feed <= 0:
-        return {"error": "Feed must be greater than 0"}
+    machining_time = length / feed_rate
 
-    if length <= 0:
-        return {"error": "Length must be greater than 0"}
+    mrr = math.pi * diameter * doc * feed * rpm
 
-    time = length / (speed * feed)
+    power = (mrr * 1.5) / (60 * 1000)
 
-    return {"machining_time": round(time,4)}
+    if nose_radius > 0:
+        surface_roughness = (feed**2) / (32 * nose_radius)
+    else:
+        surface_roughness = 0
+
+    return {
+
+        "cutting_speed": round(cutting_speed,2),
+        "feed_rate": round(feed_rate,2),
+        "machining_time": round(machining_time,3),
+        "mrr": round(mrr,2),
+        "power": round(power,2),
+        "surface_finish": round(surface_roughness,4)
+
+    }

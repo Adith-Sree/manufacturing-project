@@ -2,26 +2,113 @@
 <html>
 
 <head>
-    <title>Manufacturing Calculator</title>
-    <link rel="stylesheet" href="style.css">
+<title>CNC Machining Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-<h1>Machining Time Calculator</h1>
+<div class="dashboard">
 
-<label>Speed:</label>
-<input id="speed" type="number"><br><br>
+<h1>CNC Machining Calculator</h1>
 
-<label>Feed:</label>
-<input id="feed" type="number"><br><br>
+<div class="grid">
 
-<label>Length:</label>
-<input id="length" type="number"><br><br>
+<!-- MATERIAL -->
 
-<button onclick="calculate()">Calculate</button>
+<div class="card">
 
-<h2 id="result"></h2>
+<h3>Material</h3>
+
+<select id="material">
+<option value="steel">Mild Steel</option>
+<option value="aluminium">Aluminium</option>
+<option value="castiron">Cast Iron</option>
+<option value="stainless">Stainless Steel</option>
+</select>
+
+<p id="recommended_speed"></p>
+
+</div>
+
+
+<!-- TOOL PARAMETERS -->
+
+<div class="card">
+
+<h3>Tool Parameters</h3>
+
+<label>Tool Nose Radius (mm)</label>
+<input id="nose_radius" type="number">
+
+<label>Tool Diameter (mm)</label>
+<input id="diameter" type="number">
+
+<label>Depth of Cut (mm)</label>
+<input id="doc" type="number">
+
+<label>Feed (mm/rev)</label>
+<input id="feed" type="number">
+
+</div>
+
+
+<!-- MACHINE PARAMETERS -->
+
+<div class="card">
+
+<h3>Machine Parameters</h3>
+
+<label>RPM</label>
+<input id="rpm" type="number">
+
+<label>Machining Length (mm)</label>
+<input id="length" type="number">
+
+<label>Machining Allowance (mm)</label>
+<input id="allowance" type="number">
+
+</div>
+
+</div>
+
+
+<button onclick="calculate()">Run Calculation</button>
+
+
+<!-- RESULTS -->
+
+<div class="results">
+
+<h2>Results</h2>
+
+<p id="cutting_speed"></p>
+<p id="feed_rate"></p>
+<p id="machining_time"></p>
+<p id="mrr"></p>
+<p id="power"></p>
+<p id="surface_finish"></p>
+
+</div>
+
+
+<!-- G CODE -->
+
+<div class="results">
+
+<h3>Generated G-Code</h3>
+
+<pre id="gcode"></pre>
+
+</div>
+
+
+<!-- CHART -->
+
+<canvas id="rpmChart"></canvas>
+
+</div>
 
 <script src="script.js"></script>
 
