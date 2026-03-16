@@ -10,7 +10,7 @@ let feed = Number(document.getElementById("feed").value)
 let length = Number(document.getElementById("length").value)
 let doc = Number(document.getElementById("doc").value)
 
-let url = `http://127.0.0.1:8001/calculate?diameter=${diameter}&rpm=${rpm}&feed=${feed}&length=${length}&doc=${doc}&nose_radius=${nose_radius}`
+let url = `https://manufacturing-project.onrender.com/calculate?diameter=${diameter}&rpm=${rpm}&feed=${feed}&length=${length}&doc=${doc}&nose_radius=${nose_radius}`
 
 let response = await fetch(url,{method:"POST"})
 let data = await response.json()
