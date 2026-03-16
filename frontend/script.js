@@ -1,9 +1,10 @@
 let chartInstance = null
 
-let nose_radius = Number(document.getElementById("nose_radius").value)
+
 
 async function calculate(){
 
+let nose_radius = Number(document.getElementById("nose_radius").value)
 let diameter = Number(document.getElementById("diameter").value)
 let rpm = Number(document.getElementById("rpm").value)
 let feed = Number(document.getElementById("feed").value)
