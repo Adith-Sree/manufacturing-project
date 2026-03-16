@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from calculations import cnc_calculations
+from backend.calculations import cnc_calculations
 
 app = FastAPI()
 
